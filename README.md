@@ -12,3 +12,21 @@ This project will use the following stack:
 - [Drizzle ORM](https://orm.drizzle.team)
 - [Postgres](https://www.postgresql.org/) with [ pgvector ](https://github.com/pgvector/pgvector)
 - [shadcn-ui](https://ui.shadcn.com) and [TailwindCSS](https://tailwindcss.com) for styling
+
+
+# SETUP
+
+- create db: port is 5433 but it could be default pgadmin port if you want
+```
+docker run -d \
+  --name ai-sdk-rag-db \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=postgres \
+  -e POSTGRES_DB=ai_sdk_rag \
+  -p 5433:5432 \
+  pgvector/pgvector:pg18-trixie
+```
+- edit .env:
+DATABASE_URL=postgres://postgres:postgres@localhost:5433/ai_sdk_rag
+
+- pnpm db:migrate
